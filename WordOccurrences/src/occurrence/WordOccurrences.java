@@ -86,7 +86,6 @@ public class WordOccurrences {
 	 * Make Map with the given word list
 	 * @param wordList
 	 * @return Map made from the word list
-	 * @see
 	 */
 	public static Map<String, Integer> wordMaps(String[] wordList) {
 		Map<String, Integer> map = new HashMap<>();
