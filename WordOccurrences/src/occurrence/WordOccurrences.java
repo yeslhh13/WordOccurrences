@@ -70,7 +70,7 @@ public class WordOccurrences {
 	 * Create List with String type from the given String value
 	 * and remove non ASCII characters from list values
 	 * @param words
-	 * @return String[] made by the words
+	 * @return ArrayList<String> made by the words
 	 * @see https://stackoverflow.com/questions/13960385/split-string-in-java-to-show-only-sequence-of-characters
 	 */
 	public static ArrayList<String> wordList(String words) {
