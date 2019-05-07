@@ -33,7 +33,7 @@ public class WordOccurrences {
 		System.out.print("Path: ");
 		
 		String rtfText = extractTextFromRTF(in.nextLine());
-		String[] list = wordList(rtfText);
+		ArrayList<String> list = wordList(rtfText);
 		Map<String, Integer> map = wordMaps(list);
 		List<String> sortedKeyList = sortMap(map);
 		
@@ -73,12 +73,14 @@ public class WordOccurrences {
 	 * @return String[] made by the words
 	 * @see https://stackoverflow.com/questions/13960385/split-string-in-java-to-show-only-sequence-of-characters
 	 */
-	public static String[] wordList(String words) {
-		String[] result = words.replaceAll("(^[^a-z]*)|([^a-z]*$)", "").split("[^a-z]+");
-		for (int i = 0; i < result.length; i++) {
-			result[i] = CharMatcher.inRange('a', 'z').retainFrom(result[i]);
+	public static ArrayList<String> wordList(String words) {
+		ArrayList<String> result = new ArrayList<String>();
+		String[] string = words.replaceAll("(^[^a-z]*)|([^a-z]*$)", "").split("[^a-z]+");
+		
+		for (int i = 0; i < string.length; i++) {
+			result.add(CharMatcher.inRange('a', 'z').retainFrom(string[i]));
 		}
-		System.out.println("Words: " + result.length);
+		System.out.println("Words: " + result.size());
 		return result;
 	}
 	
@@ -87,17 +89,17 @@ public class WordOccurrences {
 	 * @param wordList
 	 * @return Map made from the word list
 	 */
-	public static Map<String, Integer> wordMaps(String[] wordList) {
+	public static Map<String, Integer> wordMaps(ArrayList<String> wordList) {
 		Map<String, Integer> map = new HashMap<>();
 		
-		for (int i = 0; i < wordList.length; i++) {
+		for (int i = 0; i < wordList.size(); i++) {
 			if (map.isEmpty()) {
-				map.put(wordList[i], 1);
+				map.put(wordList.get(i), 1);
 			} else {
-				if (map.containsKey(wordList[i])) {
-					map.put(wordList[i], map.get(wordList[i]) + 1);
+				if (map.containsKey(wordList.get(i))) {
+					map.put(wordList.get(i), map.get(wordList.get(i)) + 1);
 				} else {
-					map.put(wordList[i], 1);
+					map.put(wordList.get(i), 1);
 				}
 			}
 		}
